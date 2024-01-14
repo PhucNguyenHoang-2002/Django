@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Member</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-4">
+        <h1>Update Member</h1>
+        <form action="{% url 'uprec' mem.id %}" method="post">
+            {% csrf_token %}
+
+
+
+            <div class="form-group">
+                <label for="first">First Name</label>
+                <input type="text" class="form-control" name="first" value="{{mem.firstname}}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="last">Last Name</label>
+                <input type="text" class="form-control" name="last" value="{{mem.lastname}}" required>
+            </div>
+
+
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" name="email" value="{{mem.email}}" required>
+            </div>
+
+
+
+            <div class="form-group">
+                <label for="salary">Salary</label>
+                <input type="text" class="form-control" name="salary" value="{{mem.salary}}" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
