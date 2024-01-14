@@ -10,7 +10,8 @@ def index(request):
         mem = Member.objects.filter(
             Q(email__icontains=query) |  # Case-insensitive search for first name
             Q(firstname__icontains=query) |  # Case-insensitive search for first name
-            Q(lastname__icontains=query)   # Case-insensitive search for last name
+            Q(lastname__icontains=query) |  # Case-insensitive search for last name
+            Q(country__icontains=query)  # Case-insensitive search for country
         )
     else:
         mem = Member.objects.all()
@@ -18,14 +19,17 @@ def index(request):
     return render(request, 'index.html', {'mem': mem, 'query': query})
 
 def add(request):
-    return render(request,'add.html')
+    return render(request, 'add.html')
 
 def addrec(request):
     # Lấy thông tin từ dữ liệu POST gửi từ biểu mẫu thêm thành viên
     x=request.POST['first']
     y=request.POST['last']
+
     e=request.POST['email']
+
     s=request.POST['salary']
+
     # Tạo đối tượng `Member` mới với thông tin này và lưu vào cơ sở dữ liệu
     mem=Member(firstname=x,lastname=y,email=e,salary=s)
     mem.save()
@@ -38,14 +42,13 @@ def delete(request,id):
 
 def update(request,id):
     mem=Member.objects.get(id=id)
-    return render(request,'update.html',{'mem':mem})
+    return render(request, 'updata.html', {'mem':mem})
 
 def uprec(request,id):
     x=request.POST['first']
     y=request.POST['last']
     e = request.POST['email']
     s = request.POST['salary']
-
     mem=Member.objects.get(id=id)
     mem.firstname=x
     mem.lastname=y

@@ -8,14 +8,18 @@
     <title>Document</title>
     {% load static %}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
 </head>
 
 <body>
+
     <div class="container mt-4">
         <h1>Members Manager</h1>
 
         <div class="mb-3">
-            <a href="{% url 'add' %}" class="btn btn-success">Add Member</a>
+            <a href="{% url 'add' %}" class="btn btn-success">
+                <i class="fa-solid fa-ghost"></i> Add Member
+            </a>
         </div>
         <!-- Search form -->
         <form class="form-inline mb-3" method="get" action="{% url 'index' %}">
@@ -35,16 +39,19 @@
             {% for x in mem %}
             <tr>
                 <td>{{x.id}}</td>
-                <td><img src="{% load static %}{% static 'image/' %}{{ x.image }}" width="80" height="80"></td>
                 <td>{{x.firstname}}</td>
                 <td>{{x.lastname}}</td>
                 <td>{{x.email}}</td>
-                <td>{{x.salary}}$</td>
+                <td>$ {{x.salary}}</td>
                 <td class="text-center">
-                    <a href="update/{{x.id}}" class="btn btn-primary btn-sm">Update</a>
+                    <a href="update/{{x.id}}" class="btn btn-primary btn-sm">
+                        <i class="fas fa-pencil-alt"></i> Update
+                    </a>
                 </td>
                 <td class="text-center">
-                    <a href="delete/{{x.id}}" class="btn btn-danger btn-sm">Delete</a>
+                    <a href="delete/{{x.id}}" class="btn btn-danger btn-sm">
+                         <i class="fas fa-trash-alt"></i> Delete
+                    </a>
                 </td>
             </tr>
             {% endfor %}
